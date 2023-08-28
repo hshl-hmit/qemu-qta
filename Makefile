@@ -4,29 +4,15 @@
 # so users can take and adapt it for their build. We only really
 # include config-host.mak so we don't have to repeat probing for
 # cflags that the main configure has already done for us.
-#
-
-QEMU_BUILD_DIR := $(CURDIR)/./qemu/bin
--include $(QEMU_BUILD_DIR)/config-host.mak
+-include $(CURDIR)/./qemu/bin/config-host.mak
 include $(CURDIR)/./platform.mk
 
-GLIB_CFLAGS := $(shell pkg-config --cflags glib-2.0)
-LIBXML2_CFLAGS := $(shell pkg-config --cflags --libs libxml-2.0)
-
 # The main QEMU uses Glib extensively so it's perfectly fine to use it
-# in plugins (which many example do).
-CFLAGS = $(GLIB_CFLAGS) $(LIBXML2_CFLAGS) -fPIC
+# in plugins (which many examples do).
+CFLAGS = $(shell pkg-config --cflags glib-2.0)
+CFLAGS += $(shell pkg-config --cflags --libs libxml-2.0)
 CFLAGS += $(if $(findstring no-psabi,$(QEMU_CFLAGS)),-Wpsabi)
-CFLAGS += -I$(SRC_PATH)/include/qemu -Wall -Werror
-
-OS := $(shell uname)
-ifeq ($(OS), Darwin)
-LDFLAGS = -shared -undefined dynamic_lookup -Wl,-install_name,$@
-else ifeq ($(OS), Linux)
-LDFLAGS = -shared -Wl,-soname,$@
-else
-$(error Unsupported OS, cannot build shared library for plugin)
-endif
+CFLAGS += -I$(SRC_PATH)/include/qemu -Wall -Werror -fPIC
 
 all: tests
 
@@ -34,7 +20,7 @@ libqta.so: src/plugin.c src/qta.c
 	@echo -e '--------------------------------------------------------------------------------'
 	@echo -e '-  Compile libqta.so                                                           -'
 	@echo -e '--------------------------------------------------------------------------------'
-	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^ $(LIBXML2_LIBS)
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^
 
 tests: libqta.so
 	$(MAKE) -s -C tests all

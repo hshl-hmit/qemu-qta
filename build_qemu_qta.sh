@@ -2,13 +2,14 @@
 
 # WARNING: Always run script inside this folder or fix relative paths first!
 
-OS=$(uname -s)
-echo "$OS"
+OS=$(uname -o)
 if [ "$OS" == 'Darwin' ]; then
-    echo "macOS"
 	MAKE="gmake -j$(sysctl -n hw.ncpu)"
+elif [ "$OS" == 'GNU/Linux' ]; then
+	MAKE="make -j$(nproc)"
 else 
-    MAKE="make -j$(nproc)"
+    echo "ERROR: This operating system ($OS) is not supported!"
+    exit 1
 fi
 
 init() {
