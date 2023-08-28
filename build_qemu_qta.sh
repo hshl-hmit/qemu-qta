@@ -2,6 +2,15 @@
 
 # WARNING: Always run script inside this folder or fix relative paths first!
 
+OS=$(uname -s)
+echo "$OS"
+if [ "$OS" == 'Darwin' ]; then
+    echo "macOS"
+	MAKE="gmake -j$(sysctl -n hw.ncpu)"
+else 
+    MAKE=make -j$(nproc)
+fi
+
 init() {
   git submodule update --init
 	rm -f libqta.so
@@ -10,20 +19,16 @@ init() {
 qemu_setup() {
 	echo '|  --> fetched qemu source code                                |'
 	echo '+--------------------------------------------------------------+'
-	git checkout master
-	git reset --hard
-	git clean -fd
-	echo '|  --> checked out latest QEMU changes (master)                |'
-	patch -p1 < ../../qemu-fix-llvm-exported-symbols.patch &> /dev/null || exit 1
-	echo '|  --> applied patch "qemu-fix-llvm-exported-symbols.patch"    |'
+	git checkout stable-8.1
+	echo '|  --> checked out QEMU stable version 8.1                     |'
 	cd ../bin/
-	../src/configure --target-list=arm-softmmu,riscv32-softmmu --enable-plugins --enable-libxml2 || exit 1
+	../src/configure --target-list=arm-softmmu,riscv32-softmmu --enable-plugins || exit 1
 	echo '|  --> configured qemu source code                             |'
 	echo '+--------------------------------------------------------------+'
 }
 
 qemu_compile() {
-	make || exit 1
+	$MAKE || exit 1
 	echo '|  --> compilation finished                                    |'
 	echo '+--------------------------------------------------------------+'
 }
@@ -48,7 +53,7 @@ echo ''
 echo '+--------------------------------+                              '
 echo '| STEP 2 / 2: Compile QTA plugin |                              '
 echo '+--------------------------------+-----------------------------+'
-make libqta.so
+$MAKE libqta.so
 echo '|  --> DONE                                                    |'
 echo '+--------------------------------------------------------------+'
 echo ''

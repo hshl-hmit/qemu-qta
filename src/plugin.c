@@ -68,9 +68,9 @@ QEMU_PLUGIN_EXPORT int qemu_plugin_install(qemu_plugin_id_t id,
             fprintf(stderr, "ERROR: No qtdb file specified!\n");
             exit(1);
         case 2:
-            logfile = argv[1];
+            logfile = argv[1]+4; // Trim leading "log=" from argument string
         case 1:
-            qtdb = argv[0];
+            qtdb = argv[0]+5; // Trim leading "qtdb=" from argument string
             break;
     }
     qta_init(qtdb, logfile);

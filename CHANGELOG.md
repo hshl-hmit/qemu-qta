@@ -1,5 +1,9 @@
 # QTA Changelog
 
+## v0.3
+- switched to QEMU version 8.1 (stable)
+- updated build script to run on macOS 13 (Ventura)
+
 ## v0.2
 - all riscv32 examples use the sifive_e machine
 - added riscv32 ait example: program04
