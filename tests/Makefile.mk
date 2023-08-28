@@ -12,17 +12,17 @@ BOLD=\033[1m
 .PHONY: logfile_% verify_% %.qtdb %.pdf
 
 verify_%: %.ref
-	@echo "$(RESET)$(BOLD)--------------------------------------------------------------------------------$(RESET)"
-	@echo "$(RESET)$(BOLD) VERIFY: $(<:.ref=)$(RESET)"
+	@$(ECHO) "$(RESET)$(BOLD)--------------------------------------------------------------------------------$(RESET)"
+	@$(ECHO) "$(RESET)$(BOLD) VERIFY: $(<:.ref=)$(RESET)"
 	@$(MAKE) logfile_$(<:.ref=)
-	@echo "   $(PASS)[PASSED]$(RESET) logfile was written to $(<:.ref=.log)."
+	@$(ECHO) "   $(PASS)[PASSED]$(RESET) logfile was written to $(<:.ref=.log)."
 	@$(SED) "/^*[[:space:]]*Analysis[[:space:]]started\|duration/d" $(<:.ref=.log) | diff $< - || (echo "   $(FAIL)[FAILED]$(RESET) logfile $(<:.ref=.log) does not match reference $<!" ; exit 1)
-	@echo "   $(PASS)[PASSED]$(RESET) logfile $(<:.ref=.log) matches reference $<."
+	@$(ECHO) "   $(PASS)[PASSED]$(RESET) logfile $(<:.ref=.log) matches reference $<."
 
 %.qtdb: %.a3report
 	$(AIT2QTA) -i $< -o $@ > /dev/null || (echo "   $(FAIL)[FAILED]$(RESET) failed to generate time database $@ with ait2qta!"; exit 1)
-	@echo "   $(PASS)[PASSED]$(RESET) generated time database $@ with ait2qta."
+	@$(ECHO) "   $(PASS)[PASSED]$(RESET) generated time database $@ with ait2qta."
 
 %.pdf: %.a3report
 	$(AIT2QTA) -i $< -g $@ > /dev/null || (echo "   $(FAIL)[FAILED]$(RESET) failed to generate graphviz pdf $@ with ait2qta!"; exit 1)
-	@echo "   $(PASS)[PASSED]$(RESET) generated graphviz pdf $@ with ait2qta."
+	@$(ECHO) "   $(PASS)[PASSED]$(RESET) generated graphviz pdf $@ with ait2qta."
