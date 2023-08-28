@@ -8,7 +8,7 @@ if [ "$OS" == 'Darwin' ]; then
     echo "macOS"
 	MAKE="gmake -j$(sysctl -n hw.ncpu)"
 else 
-    MAKE=make -j$(nproc)
+    MAKE="make -j$(nproc)"
 fi
 
 init() {
