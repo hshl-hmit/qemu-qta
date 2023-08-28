@@ -11,7 +11,7 @@ QEMU_BUILD_DIR := $(CURDIR)/./qemu/bin
 include $(CURDIR)/./platform.mk
 
 GLIB_CFLAGS := $(shell pkg-config --cflags glib-2.0)
-LIBXML2_CFLAGS := $(shell pkg-config --cflags libxml-2.0)
+LIBXML2_CFLAGS := $(shell pkg-config --cflags --libs libxml-2.0)
 
 # The main QEMU uses Glib extensively so it's perfectly fine to use it
 # in plugins (which many example do).
