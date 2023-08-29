@@ -34,6 +34,17 @@ Go to https://developer.apple.com/download/all/ and download the pre-release ver
 ```bash
 brew install ninja meson pkg-config glib pixman make gnu-sed
 ```
+### Install prerequisites for running the tests
+```bash
+# Install graphviz
+brew install graphviz
+
+# Setup python3 virtualenv
+python3 -m venv .venv
+source .venc/bin/activate
+CFLAGS="-I$(brew --prefix graphviz)/include/" LDFLAGS="-L$(brew --prefix graphviz)/lib/" pip install pygraphviz
+```
+
 # Further reading and additional instructions
 - [The QEMU build system architecture](https://qemu.readthedocs.io/en/latest/devel/build-system.html)
 - [README on github.com/qemu](https://github.com/qemu/qemu/blob/master/README.rst)
