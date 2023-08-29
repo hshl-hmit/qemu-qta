@@ -5,48 +5,59 @@ In order to build qemu-qta and depending on your operating system you might need
 ## Ubuntu 22.04 LTS
 
 ```bash
-sudo apt install -y build-essential git libglib2.0-dev libxml2-dev ninja-build meson libpixman-1-dev python3-venv python3-pip sphinx graphviz graphviz-dev
+sudo apt install -y build-essential git libglib2.0-dev libxml2-dev ninja-build meson libpixman-1-dev python3-venv
 
-sudo apt install -y python3-pygraphviz python3-lxml
+#sudo apt install -y python3-pip sphinx
+
+sudo apt install -y graphviz graphviz-dev python3-pygraphviz python3-lxml
 ```
 
-## macOS Ventura 13.x
+## macOS
 
-### Optional: Remove previously installed Command Line Tools
+#### Command Line Tools
 ```bash
+# Delete old version (optional)
 sudo rm -rf /Library/Developer/CommandLineTools
-```
-### Install Command Line Tools
-#### macOS version <= 13 (Ventura, non-beta)
-```bash
+
+# Fetch and install
 sudo xcode-select --install
+
+# Beta release
+# - Go to https://developer.apple.com/download/all/
+# - Download latest beta 
 ```
 
-#### macOS version 14+ (Sonoma or newer, currently beta)
-Go to https://developer.apple.com/download/all/ and download the pre-release version of the Command Line Tools from there. Mount DMG and run installer.
+> **If you are running a pre-relase version of macOS**
 
-### Install Homebrew package manager
+> If you are running a pre-release version of macOS, `xcode-select --install` will not work. Instead you need to login to the [Apple Developer](https://developer.apple.com/download/all/) website and download the latest beta version of the Command Line Tools from there. 
+
+>At the time of writing these instructions, the latest **Command Line Tools for Xcode 15 beta 7** work with **macOS Version 14.0 Sonoma**. They can be downloaded [here](https://download.developer.apple.com/Developer_Tools/Command_Line_Tools_for_Xcode_15_beta_7/Command_Line_Tools_for_Xcode_15_beta_7.dmg). Open the DMG file and install the toolchain.
+
+#### Homebrew Package Manager
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-### Install prerequisites for QEMU
-```bash
+#### Dependencies for QEMU
+```
 brew install ninja meson pkg-config glib pixman make gnu-sed
 ```
-### Install prerequisites for running the tests
-```bash
-# Setup python3 virtualenv
+#### Required python packages for running the tests
+
+##### virtualenv
+```
 python3 -m venv .venv
 source .venv/bin/activate
+```
 
-# Install graphviz
+##### pygraphviz
+```
 brew install graphviz
-
-# Install pygraphviz
 CFLAGS="-I$(brew --prefix graphviz)/include/" LDFLAGS="-L$(brew --prefix graphviz)/lib/" pip install pygraphviz
+```
 
-# Install lxml
+##### lxml
+```
 pip install lxml
 ```
 
