@@ -3,3 +3,5 @@ libqta.so
 qemu/bin/*
 .virtualenv/
 .idea/
+log_info.txt
+log_error.txt
