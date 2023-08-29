@@ -12,18 +12,28 @@ sudo apt install -y python3-pygraphviz python3-lxml
 
 ## macOS Ventura 13.x
 
+### Optional: Remove previously installed Command Line Tools
 ```bash
-# Install Homebrew Package Manager (https://brew.sh/)
-# -> Run the following command in macOS Terminal
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-
-# Install prerequisites
-brew install glib gnutls jpeg libpng libtool libusb lzo make nettle ninja pixman pkg-config snappy
-
-# Make newly installed gmake (temporarily) take higher precedence
-export PATH="/usr/local/opt/make/libexec/gnubin:$PATH"
+sudo rm -rf /Library/Developer/CommandLineTools
+```
+### Install Command Line Tools
+#### macOS version <= 13 (Ventura, non-beta)
+```bash
+sudo xcode-select --install
 ```
 
+#### macOS version 14+ (Sonoma or newer, currently beta)
+Go to https://developer.apple.com/download/all/ and download the pre-release version of the Command Line Tools from there. Mount DMG and run installer.
+
+### Install Homebrew package manager
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+### Install prerequisites for QEMU
+```bash
+brew install ninja meson pkg-config glib pixman make
+```
 # Further reading and additional instructions
 - [The QEMU build system architecture](https://qemu.readthedocs.io/en/latest/devel/build-system.html)
 - [README on github.com/qemu](https://github.com/qemu/qemu/blob/master/README.rst)
