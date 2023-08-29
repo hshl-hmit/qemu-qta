@@ -1,24 +1,16 @@
 # Prerequisite installation
 
-Depending on your operating system you (almost certainly) need to install some prerequisites first. The following sections will give you a brief overview of how to install the necessary software to build QEMU from source code under recent versions of Arch Linux, Debian and Ubuntu Linux as well as under macOS.
+In order to build qemu-qta and depending on your operating system you might need to install some prerequisites first. The following sections will give you a brief overview about how to install the necessary software to build QEMU and the qta plugin from source under Ubuntu Linux LTS 22.04 as well as under macOS v13 Ventura.
 
-## Alternative A - Arch Linux
-
-```bash
-# This also install all optional QEMU dependencies
-sudo pacman -S seabios gnutls libpng libaio numactl libnfs lzo snappy curl \
-    vde2 libcap-ng spice libcacard usbredir libslirp libssh zstd liburing \
-    virglrenderer sdl2 vte3 libpulse libjack.so brltty spice-protocol python \
-    ceph libiscsi glusterfs python-sphinx xfsprogs
-```
-
-## Alternative B - Ubuntu 20.04 LTS
+## Ubuntu 22.04 LTS
 
 ```bash
-sudo apt install -y build-essential git libglib2.0-dev ninja-build meson libpixman-1-dev python3-venv python3-pip
+sudo apt install -y build-essential git libglib2.0-dev libxml2-dev ninja-build meson libpixman-1-dev python3-venv python3-pip sphinx graphviz graphviz-dev
+
+sudo apt install -y python3-pygraphviz python3-lxml
 ```
 
-## Alternative C - macOS Mojave 10.14 and above
+## macOS Ventura 13.x
 
 ```bash
 # Install Homebrew Package Manager (https://brew.sh/)
