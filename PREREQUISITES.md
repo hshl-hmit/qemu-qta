@@ -32,7 +32,7 @@ Go to https://developer.apple.com/download/all/ and download the pre-release ver
 
 ### Install prerequisites for QEMU
 ```bash
-brew install ninja meson pkg-config glib pixman make
+brew install ninja meson pkg-config glib pixman make gnu-sed
 ```
 # Further reading and additional instructions
 - [The QEMU build system architecture](https://qemu.readthedocs.io/en/latest/devel/build-system.html)
