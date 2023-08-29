@@ -38,7 +38,7 @@ brew install ninja meson pkg-config glib pixman make gnu-sed
 ```bash
 # Setup python3 virtualenv
 python3 -m venv .venv
-source .venc/bin/activate
+source .venv/bin/activate
 
 # Install graphviz
 brew install graphviz
