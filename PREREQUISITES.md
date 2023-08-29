@@ -36,13 +36,18 @@ brew install ninja meson pkg-config glib pixman make gnu-sed
 ```
 ### Install prerequisites for running the tests
 ```bash
-# Install graphviz
-brew install graphviz
-
 # Setup python3 virtualenv
 python3 -m venv .venv
 source .venc/bin/activate
+
+# Install graphviz
+brew install graphviz
+
+# Install pygraphviz
 CFLAGS="-I$(brew --prefix graphviz)/include/" LDFLAGS="-L$(brew --prefix graphviz)/lib/" pip install pygraphviz
+
+# Install lxml
+pip install lxml
 ```
 
 # Further reading and additional instructions
