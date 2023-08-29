@@ -1,10 +1,24 @@
 # -*- Mode: makefile -*-
-include $(CURDIR)/./platform.mk
+UNAME := $(shell uname -o)
+ifeq ($(UNAME), Darwin)
+	export MAKE = gmake
+	LDFLAGS += -undefined dynamic_lookup -Wl,-install_name,$@
+	NCPUS = $(shell sysctl -n hw.ncpu)
+else ifeq ($(UNAME), GNU/Linux)
+	export MAKE = make
+	LDFLAGS += -Wl,-soname,$@
+	NCPUS = $(shell nproc)
+else
+	$(error platform.mk: this operating system $(OS) is not supported!)
+endif
 
-CFLAGS = $(shell pkg-config --cflags glib-2.0)
-CFLAGS += $(shell pkg-config --cflags --libs libxml-2.0)
-CFLAGS += $(if $(findstring no-psabi,$(QEMU_CFLAGS)),-Wpsabi)
+CFLAGS += $(shell pkg-config --cflags glib-2.0)
+CFLAGS += $(shell pkg-config --cflags libxml-2.0)
 CFLAGS += -I$(CURDIR)/qemu/src/include/qemu -Wall -Werror -fPIC
+
+LDFLAGS += -shared
+LDFLAGS += $(shell pkg-config --libs glib-2.0)
+LDFLAGS += $(shell pkg-config --libs libxml-2.0)
 
 LOG_INFO = $(CURDIR)/log_info.txt
 LOG_ERROR = $(CURDIR)/log_error.txt
@@ -51,7 +65,7 @@ libqta.so: src/plugin.c src/qta.c
 	@echo '+---------------------------------+                             '
 	@echo '| Compile QEMU plugin "libqta.so" |                             '
 	@echo '+---------------------------------+----------------------------+'
-	@$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^ $(PIPE_OUTPUT)
+	@$(CC) -o $@ $(CFLAGS) $^ $(LDFLAGS) $(PIPE_OUTPUT)
 	@echo '|  --> SUCCESS                                                 |'
 	@echo '+--------------------------------------------------------------+'
 

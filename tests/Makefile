@@ -1,19 +1,18 @@
-include $(CURDIR)/../platform.mk
 include Makefile.mk
 
 # Run tests sequentially for better readability
 all:
-	@$(ECHO) "$(RESET)$(BOLD)--------------------------------------------------------------------------------$(RESET)"
-	@$(ECHO) "$(RESET)$(BOLD) ARCHITECTURE: riscv32 $(<:.ref=)$(RESET)"
+	@printf "$(RESET)$(BOLD)--------------------------------------------------------------------------------$(RESET)\n"
+	@printf "$(RESET)$(BOLD) ARCHITECTURE: riscv32 $(<:.ref=)$(RESET)\n"
 	@$(MAKE) -s -C riscv32 verify_program01
 	@$(MAKE) -s -C riscv32 verify_program02
 	@$(MAKE) -s -C riscv32 verify_program04
-	@$(ECHO) "$(RESET)$(BOLD)--------------------------------------------------------------------------------$(RESET)"
-	@$(ECHO) ""
-	@$(ECHO) "$(RESET)$(BOLD)--------------------------------------------------------------------------------$(RESET)"
-	@$(ECHO) "$(RESET)$(BOLD) ARCHITECTURE: arm $(<:.ref=)$(RESET)"
+	@printf "$(RESET)$(BOLD)--------------------------------------------------------------------------------$(RESET)\n"
+	@printf "\n"
+	@printf "$(RESET)$(BOLD)--------------------------------------------------------------------------------$(RESET)\n"
+	@printf "$(RESET)$(BOLD) ARCHITECTURE: arm $(<:.ref=)$(RESET)\n"
 	@$(MAKE) -s -C arm verify_program03
-	@$(ECHO) "$(RESET)$(BOLD)--------------------------------------------------------------------------------$(RESET)"
+	@printf "$(RESET)$(BOLD)--------------------------------------------------------------------------------$(RESET)\n"
 
 clean:
 	rm -f arm/*.pdf
