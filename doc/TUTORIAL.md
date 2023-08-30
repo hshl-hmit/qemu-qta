@@ -6,7 +6,7 @@ Let us start with a very minimalistic example.
 
 ## Tutorial 1: A minimal program
 
-The following listing shows the disassembly of the a minimalistic RISC-V program in [tests/riscv32/program01.elf](./tests/riscv32/program01.elf), which consists only of the two basic blocks `_start` at 0x8000000 and `end` at 0x8000000C.
+The following listing shows the disassembly of the a minimalistic RISC-V program in [program01.elf](../tests/riscv32/program01.elf), which consists only of the two basic blocks `_start` at 0x8000000 and `end` at 0x8000000C.
 
 ```
 program01.elf:     file format elf32-littleriscv
@@ -94,7 +94,7 @@ From inside the folder tests/riscv32, this example can be simulated with the fol
 
 ## Tutorial 2: A simple loop
 
-The second tutorial is based on the program [tests/riscv32/program02.elf](./tests/riscv32/program02.elf), which contains a loop that is executed 5 times in a row.
+The second tutorial is based on the program [program02.elf](../tests/riscv32/program02.elf), which contains a loop that is executed 5 times in a row.
 
 The following listing shows the corresponding disassembly:
 
@@ -186,8 +186,7 @@ From inside the tests/riscv32 tutorial, this example can be simulated with the f
 
 ## Tutorial 3: Import WCET time behavior from AbsInt aiT
 
-We have provided the tool `ait2qta` that automatically generates a QTA Timing Database from a timing analyis report from the WCET timing analysis tool aiT from AnsInt GmbH. It always takes the analysis with the `-i` option.
-The `-o` option tells ait2qta where to put the new QTA timing database file. The third option `-g` will not write the timing database but plot the extracted aiT control flow graph instead.
+The third tutorial is based on the program [program03.elf](../tests/riscv32/program03.elf). We have provided the tool `ait2qta` that automatically generates a QTA Timing Database from a timing analyis report from the WCET timing analysis tool ^aiT^ from *AnsInt GmbH*. It takes the aiT analysis report with the `-i` option. The `-o` option tells ait2qta where to put the new QTA Timing Database file. The third option `-g` plots the extracted and time-annotated control flow graph.
 
 ### Generate the QTDB from an aiT report file
 
@@ -207,4 +206,4 @@ From inside the folder tests/arm, this example can be simulated with the followi
 
 # Additional information
 
-For more information, please refer to the XSD schema file [qta.xsd](qta.xsd) that describes the QTA TimingDatabase format in full detail.
+For more information, please refer to the XSD schema file [qta.xsd](../qta.xsd) that describes the QTA TimingDatabase format in full detail.
