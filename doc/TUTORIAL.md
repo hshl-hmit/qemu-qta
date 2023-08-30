@@ -186,14 +186,14 @@ From inside the tests/riscv32 tutorial, this example can be simulated with the f
 
 ## Tutorial 3: Import WCET time behavior from AbsInt aiT
 
-The third tutorial is based on the program [program03.elf](../tests/riscv32/program03.elf). We have provided the tool `ait2qta` that automatically generates a QTA Timing Database from a timing analyis report from the WCET timing analysis tool ^aiT^ from *AnsInt GmbH*. It takes the aiT analysis report with the `-i` option. The `-o` option tells ait2qta where to put the new QTA Timing Database file. The third option `-g` plots the extracted and time-annotated control flow graph.
+The third tutorial is based on the program [program04.elf](../tests/riscv32/program04.elf). We have provided the tool `ait2qta` that automatically generates a QTA Timing Database from a timing analyis report from the WCET timing analysis tool ^aiT^ from *AnsInt GmbH*. It takes the aiT analysis report with the `-i` option. The `-o` option tells ait2qta where to put the new QTA Timing Database file. The third option `-g` plots the extracted and time-annotated control flow graph.
 
 ### Generate the QTDB from an aiT report file
 
 The third tutorial program was intended to demonstrate ait2qta. Head over to the folder tests/arm and run
 ```bash
-../../util/ait2qta -i program03.a3report -o program03.qtdb
-../../util/ait2qta -i program03.a3report -g program03.pdf
+../../util/ait2qta -i program04.a3report -o program04.qtdb
+../../util/ait2qta -i program04.a3report -g program04.pdf
 ```
 
 ### Run the time simulation
@@ -201,7 +201,7 @@ The third tutorial program was intended to demonstrate ait2qta. Head over to the
 From inside the folder tests/arm, this example can be simulated with the following command:
 
 ```bash
-../../qemu/bin/qemu-system-riscv32 -M sifive_e -nographic -kernel program03.elf -plugin ../../libqta.so,qtdb=./program03.qtdb
+../../qemu/bin/qemu-system-riscv32 -M sifive_e -nographic -kernel program04.elf -plugin ../../libqta.so,qtdb=./program04.qtdb
 ```
 
 # Additional information
