@@ -2,7 +2,11 @@
 
 ## v0.3
 - switched to QEMU version 8.1 (stable)
-- updated build script to run on macOS 13 (Ventura)
+- improved build process
+- tested under Ubuntu 22.04
+- tested under macOS v13.x Ventura
+- tested under macOS v14 Sonoma (BETA)
+- updated documentation
 
 ## v0.2
 - all riscv32 examples use the sifive_e machine
