@@ -1,10 +1,10 @@
 # -*- Mode: makefile -*-
-UNAME := $(shell uname -o)
+UNAME := $(shell uname)
 ifeq ($(UNAME), Darwin)
 	export MAKE = gmake
 	LDFLAGS += -undefined dynamic_lookup -Wl,-install_name,$@
 	NCPUS = $(shell sysctl -n hw.ncpu)
-else ifeq ($(UNAME), GNU/Linux)
+else ifeq ($(UNAME), Linux)
 	export MAKE = make
 	LDFLAGS += -Wl,-soname,$@
 	NCPUS = $(shell nproc)

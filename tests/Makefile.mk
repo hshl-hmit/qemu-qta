@@ -1,7 +1,7 @@
-UNAME := $(shell uname -o)
+UNAME := $(shell uname)
 ifeq ($(UNAME), Darwin)
 SED := gsed
-else ifeq ($(UNAME), GNU/Linux)
+else ifeq ($(UNAME), Linux)
 SED := sed
 else
 	$(error platform.mk: this operating system $(OS) is not supported!)
