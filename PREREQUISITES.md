@@ -1,6 +1,6 @@
 # Prerequisites
 
-In order to build qemu-qta and depending on your operating system you might need to install some prerequisites first. The following sections will give you a brief overview about how to install the necessary software to build QEMU and the qta plugin from source under Ubuntu Linux LTS 22.04 as well as under macOS v13 Ventura.
+In order to build `qemu-qta` and depending on your operating system you might need to install some prerequisites first. The following sections will give you a brief overview about how to install the necessary software to build QEMU and the qta plugin from source under `Ubuntu Linux LTS 22.04` as well as under `macOS v13 Ventura`.
 
 ## Ubuntu 22.04 LTS
 
