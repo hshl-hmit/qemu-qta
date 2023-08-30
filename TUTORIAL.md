@@ -6,7 +6,7 @@ Let us start with a very minimalistic example.
 
 ## Tutorial 1: A minimal program
 
-The following listing shows the disassembly of the a minimalistic RISC-V program in [./tests/riscv32/program01.elf](./tests/riscv32/program01.elf), which consists only of the two basic blocks `_start` at 0x8000000 and `end` at 0x8000000C.
+The following listing shows the disassembly of the a minimalistic RISC-V program in [tests/riscv32/program01.elf](./tests/riscv32/program01.elf), which consists only of the two basic blocks `_start` at 0x8000000 and `end` at 0x8000000C.
 
 ```
 program01.elf:     file format elf32-littleriscv
@@ -89,12 +89,12 @@ The following listing shows the complete QTA timing database (.qtdb):
 From inside the folder tests/riscv32, this example can be simulated with the following command:
 
 ```bash
-../../qemu/bin/qemu-system-riscv32 -M sifive_e -nographic -kernel program01.elf -plugin ../../libqta.so,arg=./program01.qtdb
+../../qemu/bin/qemu-system-riscv32 -M sifive_e -nographic -kernel program01.elf -plugin ../../libqta.so,qtdb=./program01.qtdb
 ```
 
 ## Tutorial 2: A simple loop
 
-The second tutorial is based on the program [./tests/riscv32/program02.elf](./tests/riscv32/program02.elf), which contains a loop that is executed 5 times in a row.
+The second tutorial is based on the program [tests/riscv32/program02.elf](./tests/riscv32/program02.elf), which contains a loop that is executed 5 times in a row.
 
 The following listing shows the corresponding disassembly:
 
@@ -181,7 +181,7 @@ The following listing shows the complete QTA timing database (.qtdb):
 From inside the tests/riscv32 tutorial, this example can be simulated with the following command:
 
 ```bash
-../../qemu/bin/qemu-system-riscv32 -M sifive_e -nographic -kernel program02.elf -plugin ../../libqta.so,arg=./program02.qtdb
+../../qemu/bin/qemu-system-riscv32 -M sifive_e -nographic -kernel program02.elf -plugin ../../libqta.so,qtdb=./program02.qtdb
 ```
 
 ## Tutorial 3: Import WCET time behavior from AbsInt aiT
@@ -202,7 +202,7 @@ The third tutorial program was intended to demonstrate ait2qta. Head over to the
 From inside the folder tests/arm, this example can be simulated with the following command:
 
 ```bash
-../../qemu/bin/qemu-system-arm -M netduino2 -nographic -kernel program03.elf -plugin ../../libqta.so,arg=./program03.qtdb
+../../qemu/bin/qemu-system-riscv32 -M sifive_e -nographic -kernel program03.elf -plugin ../../libqta.so,qtdb=./program03.qtdb
 ```
 
 # Additional information
