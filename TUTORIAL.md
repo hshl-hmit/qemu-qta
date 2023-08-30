@@ -27,7 +27,13 @@ Disassembly of section .init:
 
 Let us assume that we want to annotate the execution time of block `_start` with 42 clock cycles. For this we have to specify a CFG (Control Flow Graph) with both basic blocks `_start`and `end` and annotate the edge between both with the value 42. Thus, the time-annotated CFG should look like this:
 
-![Control Flow Graph for Program 01](./tests/riscv32/program01.png)
+```mermaid
+stateDiagram-v2
+    [*] --> _start
+    _start --> b0
+    b0 --> _end: 42 cycles
+    _end --> _end
+```
 
 ### The QTA Timing Database
 
@@ -113,7 +119,15 @@ Disassembly of section .init:
 
 In this example, the execution of `b0` block takes 13 cycles. It includes the first loop iteration. The remaing 4 loop iterations, which are represented by block `b1`, take 5 cycles each. The program flow from `b1` to `end` shall need additional 2 cycles, resulting in a total of 13 + (4*5) + 2 = 35 cycles. Thus, the time-annotated CFG should look like this:
 
-![Control Flow Graph for Program 02](./tests/riscv32/program02.png)
+```mermaid
+stateDiagram-v2
+    [*] --> _start
+    _start --> b0
+    b0 --> b1: 13 cycles
+    b1 --> b1: 5 cycles
+    b1 --> _end: 2 cycles
+    _end --> _end
+```
 
 ### The QTA Timing Database
 
