@@ -6,7 +6,7 @@ Welcome to the QEMU QTA plugin. This extension adds time simulation and analysis
 
 In order to build `qemu-qta` and depending on your operating system you might need to install some prerequisites first. The QEMU compilation usually needs some libraries and tools that are not available on all systems. 
 
-> Please refer to [/PREREQUISITES.md](/PREREQUISITES.md) for details how to set up your system accordingly. 
+> Please refer to [PREREQUISITES.md](doc/PREREQUISITES.md) for details how to set up your system accordingly. 
 
 ## Testing the toolschain
 
@@ -20,7 +20,7 @@ from here. For each of the three test binaries a time simulation will be run and
 
 ## How to write timing models
 
-Please refer to [/TUTORIAL.md](/TUTORIAL.md) for a step-by-step guide that explains how to model the timing behavior of binary software. You will learn how to create control-flow graphs (CFGs) for binary programs by applying tools like `objdump`. Next, you will learn how to annotate binary basic blocks in CFGs with timing data and how to co-simulate the binary software in combination with their corresponding annotated CFGs.
+Please refer to [TUTORIAL.md](doc/TUTORIAL.md) for a step-by-step guide that explains how to model the timing behavior of binary software. You will learn how to create control-flow graphs (CFGs) for binary programs by applying tools like `objdump`. Next, you will learn how to annotate binary basic blocks in CFGs with timing data and how to co-simulate the binary software in combination with their corresponding annotated CFGs.
 
 ## Further reading and additional instructions
 
