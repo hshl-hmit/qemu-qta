@@ -67,11 +67,3 @@ CFLAGS="-I$(brew --prefix graphviz)/include/" LDFLAGS="-L$(brew --prefix graphvi
 ```console
 pip install lxml
 ```
-
-# Further reading and additional instructions
-
-- [The QEMU build system architecture](https://qemu.readthedocs.io/en/latest/devel/build-system.html)
-- [README on github.com/qemu](https://github.com/qemu/qemu/blob/master/README.rst)
-- [QEMU Wiki: Hosts/Mac](https://wiki.qemu.org/Hosts/Mac) 
-- [QEMU Wiki: Hosts/Linux](https://wiki.qemu.org/Hosts/Linux) 
-- [QEMU Wiki: Hosts/W32](https://wiki.qemu.org/Hosts/W32) 
