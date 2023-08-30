@@ -1,35 +1,31 @@
-## QTA: The QEMU Timing Analyzer Plugin
+# QTA: The QEMU Timing Analyzer Plugin
 
 Welcome to the QEMU QTA plugin. This extension adds time simulation and analysis support to the free System Emulator QEMU.
 
-### Installation
-We have provided a simple bash script that should work on most Unix systems. It was testes on Ubuntu 20.04 and on MacOS Big Sur. To invoke the QEMU / QTA build, simply run
+## Set up your simulation and test environmant
 
-```bash
-./build_qemu_qta.sh
-```
+In order to build `qemu-qta` and depending on your operating system you might need to install some prerequisites first. The QEMU compilation usually needs some libraries and tools that are not available on all systems. 
 
-from here. This should fetch, setup and compile QEMU for the use with plugins and also build the QTA plugin itself automatically. Please carefully watch the output for any errors that might occur during build.  
+> Please refer to [/PREREQUISITES.md](/PREREQUISITES.md) for details how to set up your system accordingly. 
 
-After a successful build, a file named `libqta.so` should have been created.
+## Testing the toolschain
 
-> **IMPORTANT**:
->
-> The QEMU compilation usually needs some libraries and tools that are not available on all systems. Please refer to [/PREREQUISITES.md](/PREREQUISITES.md) for details how to set up your system accordingly. 
+The QEMU Timing Analyzer comes with a set of binary test programs for both ARM and RISC-V. Each test is accompanied by a suitable simulation-grade timing model for co-simulation. In addition, reference values regarding the outputs of all tests are included. These can be used to check whether the QTA toolchain behaves as expected. You can run these tests with
 
-### Testing
-
-If you want to test if QTA is running properly, you can trigger a set of tests that are shipped with QTA. For this, simply run
-
-```bash
+```code
 make tests
 ```
 
 from here. For each of the three test binaries a time simulation will be run and their simulation output is validated against reference results.
 
-> **IMPORTANT**: 
-> 
-> The last test depends on the python packages *lxml* and *pygraphviz*. Please ensure those are installed either globally or inside a python virtual environment. In the latter case, do not forget to always enter the virtual env before using QTA!
+## How to write timing models
 
-### Usage
-Please refer to [/TUTORIAL.md](/TUTORIAL.md) for a step-by-step guide that explains how to write a QTA timing annotation database (.qtdb) for binary program and how to run the time simulation afterwards.
+Please refer to [/TUTORIAL.md](/TUTORIAL.md) for a step-by-step guide that explains how to model the timing behavior of binary software. You will learn how to create control-flow graphs (CFGs) for binary programs by applying tools like `objdump`. Next, you will learn how to annotate binary basic blocks in CFGs with timing data and how to co-simulate the binary software in combination with their corresponding annotated CFGs.
+
+## Further reading and additional instructions
+
+- [The QEMU build system architecture](https://qemu.readthedocs.io/en/latest/devel/build-system.html)
+- [README on github.com/qemu](https://github.com/qemu/qemu/blob/master/README.rst)
+- [QEMU Wiki: Hosts/Mac](https://wiki.qemu.org/Hosts/Mac) 
+- [QEMU Wiki: Hosts/Linux](https://wiki.qemu.org/Hosts/Linux) 
+- [QEMU Wiki: Hosts/W32](https://wiki.qemu.org/Hosts/W32) 
