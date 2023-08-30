@@ -20,7 +20,7 @@ from here. For each of the three test binaries a time simulation will be run and
 
 ## How to write timing models
 
-Please refer to [/TUTORIAL.md](/TUTORIAL.md) for a step-by-step guide that explains how to write a QTA timing annotation database (.qtdb) for binary program and how to run the time simulation afterwards.
+Please refer to [/TUTORIAL.md](/TUTORIAL.md) for a step-by-step guide that explains how to model the timing behavior of binary software. You will learn how to create control-flow graphs (CFGs) for binary programs by applying tools like `objdump`. Next, you will learn how to annotate binary basic blocks in CFGs with timing data and how to co-simulate the binary software in combination with their corresponding annotated CFGs.
 
 ## Further reading and additional instructions
 
