@@ -207,4 +207,4 @@ From inside the folder tests/arm, this example can be simulated with the followi
 
 # Additional information
 
-For more information, please refer to the XSD schema file [qta.xsd](/extra/xsd/qta.xsd) that describes the QTA TimingDatabase format in full detail.
+For more information, please refer to the XSD schema file [qta.xsd](qta.xsd) that describes the QTA TimingDatabase format in full detail.
